@@ -855,7 +855,7 @@ class TestRedisCommands(object):
         r.sadd('a', *s)
         randoms = r.srandmember('a', number=2)
         assert len(randoms) == 2
-        assert set(randoms).intersection(s) == set(randoms)
+        assert randoms.issubset(s)
 
     def test_srem(self, r):
         r.sadd('a', '1', '2', '3', '4')

@@ -318,6 +318,10 @@ class StrictRedis(object):
             lambda r: r and set(r) or set()
         ),
         string_keys_to_dict(
+            'SRANDMEMBER',
+            lambda r: set(r) if isinstance(r, list) else r
+        ),
+        string_keys_to_dict(
             'ZRANGE ZRANGEBYSCORE ZREVRANGE ZREVRANGEBYSCORE',
             zset_score_pairs
         ),
